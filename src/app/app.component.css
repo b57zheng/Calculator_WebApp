@@ -1,0 +1,25 @@
+.myButton{
+    width: 200px;
+    height: 100px;
+    font-size: 80px;
+}
+
+.myAC{
+    width: 400px;
+    height: 100px;
+    font-size: 80px
+}
+
+.myDEL{
+    width: 400px;
+    height: 100px;
+    font-size: 80px
+}
+
+.myDisplay{
+    width: 790px;
+    height: 100px;
+    font-size: 80px;
+    background-color: black;
+    color: white;
+}
