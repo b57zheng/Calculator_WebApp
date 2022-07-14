@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConnectableObservable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent
   operatorIndex : any[] =[]
   splitNumbers: any[] = []
   splitOperators: any[] = []
-  operators = ['+','-','x','÷']
+  operators = ['+','-','x','÷',]
 
   updateDisplay(input: string)
   {
@@ -36,6 +37,8 @@ export class AppComponent
     this.splitNumbers = []
     this.splitOperators = []
     this.operatorIndex = []
+    console.log(this.splitNumbers)
+    console.log(this.splitOperators)
     console.log(this.displayString.length)
     var index = 0
     var prevStringElement
@@ -46,11 +49,11 @@ export class AppComponent
       {
         this.operatorIndex.push(i)
         this.splitOperators.push(this.displayString[i])
-        if(prevStringElement == 'operator')
-        {
-          return this.displayString = 'ERROR'
-        }
-        prevStringElement = 'operator'
+        //if(prevStringElement == 'operator')
+        //{
+        //  return this.displayString = 'ERROR'
+        //}
+        //prevStringElement = 'operator'
       }
       else
       {
@@ -72,7 +75,7 @@ export class AppComponent
     console.log(this.splitOperators)
     //setting stored variable to first item of array
     var outputNumber = Number(this.splitNumbers[0]) 
-    //setting pointer to look at second element in the array
+    //setting pointer to point at second element in the array
     var splitNumberPointer = 1 
     for(let i=0; i<this.splitOperators.length; i++)
     {
@@ -83,6 +86,8 @@ export class AppComponent
         //updating pointer 
         splitNumberPointer = splitNumberPointer + 1 
       }
+      console.log(this.splitNumbers[i-1])
+      console.log(this.splitNumbers[i])
       if(this.splitOperators[i] == '-')
       {
         outputNumber = outputNumber - Number(this.splitNumbers[splitNumberPointer])
@@ -95,7 +100,7 @@ export class AppComponent
       }
       if(this.splitOperators[i] == '÷')
       {
-        outputNumber = outputNumber * 1/Number(this.splitNumbers[splitNumberPointer])
+        outputNumber = outputNumber / Number(this.splitNumbers[splitNumberPointer])
         if(this.splitNumbers[splitNumberPointer] == 0)
         {
           return this.displayString = 'ERROR'
@@ -105,6 +110,11 @@ export class AppComponent
           splitNumberPointer = splitNumberPointer + 1
         }
       }
+      //  if(this.splitOperators[i] == '--')
+      //  {
+      //    outputNumber = outputNumber + Number(this.splitNumbers[splitNumberPointer])
+      //    splitNumberPointer = splitNumberPointer + 1
+      //  }
 
     }
     console.log(outputNumber)
