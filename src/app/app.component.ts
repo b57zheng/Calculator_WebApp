@@ -15,7 +15,7 @@ export class AppComponent
   operatorIndex : any[] =[]
   splitNumbers: any[] = []
   splitOperators: any[] = []
-  operators = ['+','-','x','÷',]
+  operators = ['+','-','x','÷']
 
   updateDisplay(input: string)
   {
@@ -41,23 +41,13 @@ export class AppComponent
     console.log(this.splitOperators)
     console.log(this.displayString.length)
     var index = 0
-    var prevStringElement
     //iterating through string getting the index of the operators
     for(let i=0; i<this.displayString.length; i++)
     { 
-      if(this.operators.includes(this.displayString[i]))
+      if(this.operators.includes(this.displayString[i])) 
       {
         this.operatorIndex.push(i)
         this.splitOperators.push(this.displayString[i])
-        //if(prevStringElement == 'operator')
-        //{
-        //  return this.displayString = 'ERROR'
-        //}
-        //prevStringElement = 'operator'
-      }
-      else
-      {
-        prevStringElement = 'number'
       }
     }
 
@@ -88,11 +78,17 @@ export class AppComponent
       }
       console.log(this.splitNumbers[i-1])
       console.log(this.splitNumbers[i])
-      if(this.splitOperators[i] == '-')
+      if(this.splitOperators[i-1] == '-' && this.splitOperators[i] == '-' && this.splitNumbers[i] == '')
+      {
+        outputNumber = outputNumber + Number(this.splitNumbers[splitNumberPointer])
+        splitNumberPointer = splitNumberPointer + 1
+      }
+      else if(this.splitOperators[i] == '-')
       {
         outputNumber = outputNumber - Number(this.splitNumbers[splitNumberPointer])
         splitNumberPointer = splitNumberPointer + 1
       }
+
       if(this.splitOperators[i] == 'x')
       {
         outputNumber = outputNumber * Number(this.splitNumbers[splitNumberPointer])
@@ -103,19 +99,13 @@ export class AppComponent
         outputNumber = outputNumber / Number(this.splitNumbers[splitNumberPointer])
         if(this.splitNumbers[splitNumberPointer] == 0)
         {
-          return this.displayString = 'ERROR'
+          return this.displayString = 'MATH ERROR'
         }
         else
         {
           splitNumberPointer = splitNumberPointer + 1
         }
       }
-      //  if(this.splitOperators[i] == '--')
-      //  {
-      //    outputNumber = outputNumber + Number(this.splitNumbers[splitNumberPointer])
-      //    splitNumberPointer = splitNumberPointer + 1
-      //  }
-
     }
     console.log(outputNumber)
     return this.displayString = String(outputNumber)
