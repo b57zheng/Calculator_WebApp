@@ -1,5 +1,8 @@
 # CalculatorApp
 
+User Interface:
+<img width="1200" alt="image" src="https://user-images.githubusercontent.com/98293562/230740387-1be17520-b9a5-4e6c-858d-968280ffb1cf.png">
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
 
 ## Development server
